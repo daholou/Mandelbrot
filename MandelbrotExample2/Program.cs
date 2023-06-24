@@ -11,8 +11,8 @@ namespace MandelbrotExample2
 {
   internal class Program
   {
-    private static readonly int WIDTH = 1280; // 3840; // 1920; //2560; // 
-    private static readonly int HEIGHT = 720; // 2160; // 1080; //1440; // 
+    private static readonly int WIDTH = 1920; //1280; // 3840; // 2560; // 
+    private static readonly int HEIGHT = 1080; //720; // 2160; // 1440; // 
     private static readonly double RATIO = HEIGHT / (double)WIDTH;
     private static readonly int PALETTE_SIZE = 2048;
     private static readonly PositionColor[] BREAKPOINTS = new PositionColor[] {
@@ -50,7 +50,7 @@ namespace MandelbrotExample2
       new (1600, 10000),
       new (1700, 16000),
     };
-    private static readonly int FIRST = 0;
+    private static readonly int FIRST = 5; // ===============================================
     private static readonly int LAST = FIRST + 1;
     private static readonly ZoomConfiguration ZOOM_CONFIGURATION = new(
       ALL_FRAME_DATA[FIRST],

@@ -1,6 +1,7 @@
 ﻿using Core.PixelPainter;
 using MandelbrotExample2.Util;
 using System.Drawing;
+using System.Runtime.Versioning;
 
 namespace MandelbrotExample2.PixelPainter
 {
@@ -25,13 +26,11 @@ namespace MandelbrotExample2.PixelPainter
       _xPixel = xPixel;
     }
 
+    [SupportedOSPlatform("windows")]
     public void Repaint(double divergenceRate)
     {
       Color color = _colorInterpolator.GetColor(divergenceRate);
-      if (OperatingSystem.IsWindows())
-      {
-        _bitmap.SetPixel(_xPixel, _yPixel, color);
-      }
+      _bitmap.SetPixel(_xPixel, _yPixel, color);
     }
   }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using System;
 
 namespace Core
 {
@@ -8,22 +7,37 @@ namespace Core
     private readonly Complex _center;
     private readonly double _horizontalRadius;
     private readonly double _verticalRadius;
+    private readonly double _ratio;
     private readonly int _maxIterationCount;
 
-    public Configuration(Complex center, double horizontalDiameter, double ratio, int maxIterationCount)
+    public Configuration(
+      Complex center,
+      double horizontalDiameter,
+      double ratio,
+      int maxIterationCount
+    )
     {
       _center = center;
       _horizontalRadius = horizontalDiameter / 2;
       _verticalRadius = _horizontalRadius * ratio;
+      _ratio = ratio;
       _maxIterationCount = maxIterationCount;
     }
 
-    public Configuration(Complex center, double horizontalDiameter, double ratio)
+    public Configuration Zoom(Complex focalPoint, double magnitude, int maxIterationCount)
     {
-      _center = center;
-      _horizontalRadius = horizontalDiameter / 2;
-      _verticalRadius = _horizontalRadius * ratio;
-      _maxIterationCount = (int)Math.Floor(50 + Math.Pow(Math.Log10(4 / horizontalDiameter), 5));
+      Configuration zoomedConfiguration = new(
+        focalPoint,
+        2 * _horizontalRadius / magnitude,
+        _ratio,
+        maxIterationCount
+      );
+      return zoomedConfiguration;
+    }
+
+    public Configuration Zoom(double magnitude)
+    {
+      return Zoom(_center, magnitude, _maxIterationCount);
     }
 
     public Complex Center

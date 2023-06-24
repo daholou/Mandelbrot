@@ -65,9 +65,9 @@ namespace Core
       _mustRecomputeDivergenceRate = true;
     }
 
-    public void Repaint(double rate)
+    public void Repaint()
     {
-      _pixelPainter.Repaint(rate);
+      _pixelPainter.Repaint(DivergenceRate);
     }
 
     private double ComputeDivergenceRate(int maxIterationCount)

@@ -1,6 +1,6 @@
 ﻿namespace Core.Util
 {
-  internal class ScalarUtils
+  public class ScalarUtils
   {
     private ScalarUtils()
     {

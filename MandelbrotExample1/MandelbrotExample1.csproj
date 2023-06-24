@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\Core\ColorSpectrumHistogram.cs" Link="ColorSpectrumHistogram.cs" />
     <Compile Include="..\Core\Configuration.cs" Link="Configuration.cs" />
     <Compile Include="..\Core\MandelbrotPixel.cs" Link="MandelbrotPixel.cs" />
     <Compile Include="..\Core\MandelbrotPixelGrid.cs" Link="MandelbrotPixelGrid.cs" />

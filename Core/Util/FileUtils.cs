@@ -14,5 +14,12 @@
       }
       return Path.Combine(folderPath, filename);
     }
+
+    public static string GetCurrentFolder()
+    {
+      string currentDirectory = Directory.GetCurrentDirectory();
+      string? parentDirectory = Directory.GetParent(currentDirectory)?.Parent?.Parent?.Parent?.FullName;
+      return parentDirectory ?? currentDirectory;
+    }
   }
 }

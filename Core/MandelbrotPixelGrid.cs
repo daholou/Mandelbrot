@@ -1,7 +1,6 @@
 ﻿using Core.PainterFactory;
 using Core.PixelPainter;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
 using System.Numerics;
 
 namespace Core
@@ -30,12 +29,7 @@ namespace Core
       {
         for (int j = 0; j < widthInPixels; ++j)
         {
-          IPixelPainter pixelPainter = painterFactory.MakePixelPainter(
-            i,
-            j,
-            _heightInPixels,
-            _widthInPixels
-          );
+          IPixelPainter pixelPainter = painterFactory.MakePixelPainter(i, j);
           _pixels.Add(new MandelbrotPixel(pixelPainter, 0));
         }
       }

@@ -2,41 +2,33 @@
 using Core.Util;
 using MandelbrotExample.PainterFactory;
 using MandelbrotExample.Util;
-using System.Drawing;
 using System.Runtime.Versioning;
 
 namespace MandelbrotExample
 {
-  [SupportedOSPlatform("windows")]
-  public class BitmapRunner : MandelbrotRunner
+  public class AsciiRunner : MandelbrotRunner
   {
-    private static BitmapPainterFactory BuildPainterFactory(
+    private static AsciiPainterFactory BuildPainterFactory(
       int width,
       int height,
-      int paletteSize
+      int horizontalResolution,
+      int verticalResolution
     )
     {
-      PositionColor[] breakpoints = new PositionColor[] {
-        new PositionColor(0.0, Color.FromArgb(0, 7, 100)),
-        new PositionColor(0.16, Color.FromArgb(32, 107, 203)),
-        new PositionColor(0.42, Color.FromArgb(237, 255, 255)),
-        new PositionColor(0.6425, Color.FromArgb(255, 170, 0)),
-        new PositionColor(0.8575, Color.FromArgb(0, 2, 0)),
-        new PositionColor(1.0, Color.FromArgb(0, 0, 0))
-      };
-      Bitmap bitmap = new(width, height);
-      ColorInterpolator colorInterpolator = new(breakpoints, paletteSize);
-      return new BitmapPainterFactory(bitmap, colorInterpolator);
+      StringGrid stringGrid = new(width, height, horizontalResolution, verticalResolution);
+      return new AsciiPainterFactory(stringGrid);
     }
 
-    public BitmapRunner(
+    public AsciiRunner(
       int width,
       int height,
-      int paletteSize
-    ) : base(width, height, BuildPainterFactory(width, height, paletteSize))
+      int horizontalResolution,
+      int verticalResolution
+    ) : base(width, height, BuildPainterFactory(width, height, horizontalResolution, verticalResolution))
     {
     }
 
+    [SupportedOSPlatform("windows")]
     public override void Execute(
       ZoomConfiguration zoomConfiguration,
       string folderPath
@@ -49,7 +41,7 @@ namespace MandelbrotExample
         Console.WriteLine($"  Working on frame {frame.FrameIndex} with {frame.MaxIterationCount} iterations...");
         _stopwatch.Restart();
         _mandelbrotGrid.UpdateConfiguration(configuration);
-        string filename = $"bitmap_frame_{frame.GetFormattedIndex()}.png";
+        string filename = $"ascii_frame_{frame.GetFormattedIndex()}.png";
         _painterFactory.Save(FileUtils.GetFilePath(folderPath, filename));
         _stopwatch.Stop();
         Console.WriteLine($"  - bitmap created in : {_stopwatch.ElapsedMilliseconds} ms");
@@ -58,7 +50,7 @@ namespace MandelbrotExample
 
     public override string GetFramesDirectory()
     {
-      return "bitmap-frames";
+      return "ascii-frames";
     }
   }
 }

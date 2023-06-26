@@ -5,8 +5,7 @@ using System.Runtime.Versioning;
 
 namespace MandelbrotExample.PixelPainter
 {
-
-  internal class BitmapPixelPainter : IPixelPainter
+  public class BitmapPixelPainter : IPixelPainter
   {
     private readonly Bitmap _bitmap;
     private readonly ColorInterpolator _colorInterpolator;

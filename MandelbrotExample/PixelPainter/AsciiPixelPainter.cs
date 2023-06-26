@@ -1,15 +1,15 @@
 ﻿using Core.PixelPainter;
 using Core.Util;
-using MandelbrotExample3.Util;
+using MandelbrotExample.Util;
 
-namespace MandelbrotExample3.PixelPainter
+namespace MandelbrotExample.PixelPainter
 {
-  internal class AsciiPixelPainter : IPixelPainter
+  public class AsciiPixelPainter : IPixelPainter
   {
     private readonly StringGrid _stringGrid;
     private readonly int _yPixel;
     private readonly int _xPixel;
-    private static readonly string DENSITY = " .'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
+    private static readonly string DENSITY = "   .'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B$@";
 
     public AsciiPixelPainter(StringGrid stringGrid, int yPixel, int xPixel)
     {

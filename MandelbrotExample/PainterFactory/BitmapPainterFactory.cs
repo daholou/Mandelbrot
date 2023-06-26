@@ -3,11 +3,11 @@ using Core.PixelPainter;
 using MandelbrotExample.PixelPainter;
 using MandelbrotExample.Util;
 using System.Drawing;
+using System.Runtime.Versioning;
 
 namespace MandelbrotExample.PainterFactory
 {
-
-  internal class BitmapPainterFactory : IPainterFactory
+  public class BitmapPainterFactory : IPainterFactory
   {
     private readonly Bitmap _bitmap;
     private readonly ColorInterpolator _colorInterpolator;
@@ -21,7 +21,7 @@ namespace MandelbrotExample.PainterFactory
       _colorInterpolator = colorInterpolator;
     }
 
-    public IPixelPainter MakePixelPainter(int row, int col, int? maxRow, int? maxCol)
+    public IPixelPainter MakePixelPainter(int row, int col)
     {
       return new BitmapPixelPainter(
         _bitmap,
@@ -29,6 +29,12 @@ namespace MandelbrotExample.PainterFactory
         row,
         col
       );
+    }
+
+    [SupportedOSPlatform("windows")]
+    public void Save(string filePath)
+    {
+      _bitmap.Save(filePath);
     }
   }
 }

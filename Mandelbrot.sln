@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MandelbrotExample1", "MandelbrotExample1\MandelbrotExample1.csproj", "{F0369C83-50EB-49B2-B6E1-BCFB9D653379}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{4989C538-AA19-4983-8F16-E819B5C0016F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MandelbrotExample", "MandelbrotExample\MandelbrotExample.csproj", "{AB137AEC-FCE1-437C-9FD8-DEDA19BB664F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MandelbrotExample3", "MandelbrotExample3\MandelbrotExample3.csproj", "{52C540C1-8781-414D-9505-0EEFADFD0207}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

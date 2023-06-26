@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace MandelbrotExample.Util
 {
-  internal class ColorInterpolator
+  public class ColorInterpolator
   {
     /// <summary>
     /// Spectrum of colors

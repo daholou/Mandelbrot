@@ -1,8 +1,7 @@
 ﻿using Core.PixelPainter;
 using System.Numerics;
-using System;
 
-namespace Core
+namespace Core.PixelGrid
 {
   /// <summary>
   /// Represents a single pixel that covers a point (complex coordinates)
@@ -73,21 +72,18 @@ namespace Core
     private double ComputeDivergenceRate(int maxIterationCount)
     {
       Complex z = 0;
-      double magnitude = 0;
-      int k = 0;
-      for (; k < maxIterationCount; k++)
+      int iterationCount = 0;
+      for (; iterationCount < maxIterationCount; iterationCount++)
       {
-        magnitude = z.Magnitude;
-        if (magnitude > 2)
+        if (z.Magnitude > 2)
         {
           break;
         }
         z = z * z + _centerCoordinates;
       }
-      //double smoothedIterationCount = k;
-      double smoothedIterationCount = (k == maxIterationCount)
+      double smoothedIterationCount = iterationCount == maxIterationCount
         ? maxIterationCount
-        : k + 1 - Math.Log2(Math.Log2(magnitude));
+        : iterationCount + 1 - Math.Log2(Math.Log2(z.Magnitude));
       return smoothedIterationCount / maxIterationCount;
     }
 

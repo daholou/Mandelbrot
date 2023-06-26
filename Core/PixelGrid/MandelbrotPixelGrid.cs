@@ -1,9 +1,9 @@
-﻿using Core.PainterFactory;
+﻿using Core.Frame;
+using Core.PainterFactory;
 using Core.PixelPainter;
-using System.Collections.Generic;
 using System.Numerics;
 
-namespace Core
+namespace Core.PixelGrid
 {
   /// <summary>
   /// Represents a grid of pixels that covers a rectangle (complex coordinates)
@@ -30,12 +30,12 @@ namespace Core
         for (int j = 0; j < widthInPixels; ++j)
         {
           IPixelPainter pixelPainter = painterFactory.MakePixelPainter(i, j);
-          _pixels.Add(new MandelbrotPixel(pixelPainter, 0));
+          _pixels.Add(new MandelbrotPixel(pixelPainter, Complex.Zero));
         }
       }
     }
 
-    public void UpdateConfiguration(Configuration configuration)
+    public void UpdateConfiguration(FrameConfiguration configuration)
     {
       _topLeftCoordinates = configuration.Center
         + new Complex(-configuration.HorizontalRadius, configuration.VerticalRadius);

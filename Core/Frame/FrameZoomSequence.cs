@@ -1,13 +1,13 @@
 ﻿using System.Numerics;
 
-namespace Core
+namespace Core.Frame
 {
-  public class ZoomConfiguration
+  public class FrameZoomSequence
   {
-    private readonly List<Configuration> _configurations;
+    private readonly List<FrameConfiguration> _configurations;
     private readonly List<FrameData> _frames;
 
-    public ZoomConfiguration(
+    public FrameZoomSequence(
       FrameData firstFrameData,
       FrameData lastFrameData,
       Complex center,
@@ -22,7 +22,7 @@ namespace Core
       );
 
       _configurations = new();
-      Configuration initialConfiguration = new(
+      FrameConfiguration initialConfiguration = new(
           center,
           initialHorizontalDiameter,
           ratio,
@@ -32,7 +32,7 @@ namespace Core
       for (int k = 0; k < _frames.Count; k++)
       {
         double magnitude = Math.Pow(zoomFactor, firstFrameData.FrameIndex + k - 1);
-        Configuration configuration = initialConfiguration.Zoom(
+        FrameConfiguration configuration = initialConfiguration.Zoom(
           magnitude,
           _frames[k].MaxIterationCount
         );
@@ -40,17 +40,28 @@ namespace Core
       }
     }
 
-    public int Size()
+    public int Size
     {
-      return _configurations.Count;
+      get
+      {
+        return _configurations.Count;
+      }
     }
 
-    public Configuration ConfigurationAt(int index)
+    public int LastFrameIndex
+    {
+      get
+      {
+        return _frames.Last().FrameIndex;
+      }
+    }
+
+    public FrameConfiguration FrameConfigurationAt(int index)
     {
       return _configurations.ElementAt(index);
     }
 
-    public FrameData FrameAt(int index)
+    public FrameData FrameDataAt(int index)
     {
       return _frames.ElementAt(index);
     }

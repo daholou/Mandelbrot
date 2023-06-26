@@ -1,6 +1,5 @@
-﻿namespace Core
+﻿namespace Core.Frame
 {
-
   public class FrameData
   {
     private readonly int _frameIndex;

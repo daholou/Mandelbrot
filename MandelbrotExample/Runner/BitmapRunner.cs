@@ -1,11 +1,11 @@
-﻿using Core;
-using Core.Util;
+﻿using Core.Frame;
+using Core.Runner;
 using MandelbrotExample.PainterFactory;
 using MandelbrotExample.Util;
 using System.Drawing;
 using System.Runtime.Versioning;
 
-namespace MandelbrotExample
+namespace MandelbrotExample.Runner
 {
   [SupportedOSPlatform("windows")]
   public class BitmapRunner : MandelbrotRunner
@@ -37,28 +37,20 @@ namespace MandelbrotExample
     {
     }
 
-    public override void Execute(
-      ZoomConfiguration zoomConfiguration,
-      string folderPath
-    )
-    {
-      for (int k = 0; k < zoomConfiguration.Size(); ++k)
-      {
-        Configuration configuration = zoomConfiguration.ConfigurationAt(k);
-        FrameData frame = zoomConfiguration.FrameAt(k);
-        Console.WriteLine($"  Working on frame {frame.FrameIndex} with {frame.MaxIterationCount} iterations...");
-        _stopwatch.Restart();
-        _mandelbrotGrid.UpdateConfiguration(configuration);
-        string filename = $"bitmap_frame_{frame.GetFormattedIndex()}.png";
-        _painterFactory.Save(FileUtils.GetFilePath(folderPath, filename));
-        _stopwatch.Stop();
-        Console.WriteLine($"  - bitmap created in : {_stopwatch.ElapsedMilliseconds} ms");
-      }
-    }
-
     public override string GetFramesDirectory()
     {
       return "bitmap-frames";
+    }
+
+    public override string GetZoomFrameSequenceFileName(FrameData frameData)
+    {
+      return $"bitmap_frame_{frameData.GetFormattedIndex()}.png";
+    }
+
+    public override string GetSingleFrameFileName(int maxIterationCount)
+    {
+      string timeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+      return $"bitmap_single_frame_{maxIterationCount}_{timeStamp}.png";
     }
   }
 }

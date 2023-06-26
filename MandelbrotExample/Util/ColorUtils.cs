@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace MandelbrotExample.Util
 {
-  internal class ColorUtils
+  public class ColorUtils
   {
     delegate byte ComponentSelector(Color color);
     private static readonly ComponentSelector _redSelector = color => color.R;

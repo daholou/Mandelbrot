@@ -1,16 +1,17 @@
 ﻿using System.Numerics;
 
-namespace Core
+namespace Core.Frame
 {
-  public class Configuration
+  public class FrameConfiguration
   {
     private readonly Complex _center;
+    private readonly double _horizontalDiameter;
     private readonly double _horizontalRadius;
     private readonly double _verticalRadius;
     private readonly double _ratio;
     private readonly int _maxIterationCount;
 
-    public Configuration(
+    public FrameConfiguration(
       Complex center,
       double horizontalDiameter,
       double ratio,
@@ -18,29 +19,30 @@ namespace Core
     )
     {
       _center = center;
+      _horizontalDiameter = horizontalDiameter;
       _horizontalRadius = horizontalDiameter / 2;
       _verticalRadius = _horizontalRadius * ratio;
       _ratio = ratio;
       _maxIterationCount = maxIterationCount;
     }
 
-    public Configuration Zoom(Complex focalPoint, double magnitude, int maxIterationCount)
+    public FrameConfiguration Zoom(Complex focalPoint, double magnitude, int maxIterationCount)
     {
-      Configuration zoomedConfiguration = new(
+      FrameConfiguration zoomedConfiguration = new(
         focalPoint,
-        2 * _horizontalRadius / magnitude,
+        _horizontalDiameter / magnitude,
         _ratio,
         maxIterationCount
       );
       return zoomedConfiguration;
     }
 
-    public Configuration Zoom(double magnitude, int maxIterationCount)
+    public FrameConfiguration Zoom(double magnitude, int maxIterationCount)
     {
       return Zoom(_center, magnitude, maxIterationCount);
     }
 
-    public Configuration Zoom(double magnitude)
+    public FrameConfiguration Zoom(double magnitude)
     {
       return Zoom(_center, magnitude, _maxIterationCount);
     }

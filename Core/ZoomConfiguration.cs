@@ -28,12 +28,14 @@ namespace Core
           ratio,
           firstFrameData.MaxIterationCount
       );
-      initialConfiguration = initialConfiguration.Zoom(Math.Pow(zoomFactor, firstFrameData.FrameIndex - 1));
-      _configurations.Add(initialConfiguration);
 
-      for (int k = 1; k < _frames.Count; k++)
+      for (int k = 0; k < _frames.Count; k++)
       {
-        Configuration configuration = _configurations[k - 1].Zoom(zoomFactor);
+        double magnitude = Math.Pow(zoomFactor, firstFrameData.FrameIndex + k - 1);
+        Configuration configuration = initialConfiguration.Zoom(
+          magnitude,
+          _frames[k].MaxIterationCount
+        );
         _configurations.Add(configuration);
       }
     }

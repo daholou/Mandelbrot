@@ -53,7 +53,7 @@
         for (int frame = 0; frame < numberOfFrames; frame++)
         {
           int frameIndex = firstFrame.FrameIndex + sign * frame;
-          int maxIterationCount = (int)Math.Floor(firstFrame.MaxIterationCount + delta * frame);
+          int maxIterationCount = (int)Math.Round(firstFrame.MaxIterationCount + delta * frame);
           frames.Add(new FrameData(frameIndex, maxIterationCount));
         }
       }

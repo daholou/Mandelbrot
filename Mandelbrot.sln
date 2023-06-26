@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MandelbrotExample1", "Mande
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{4989C538-AA19-4983-8F16-E819B5C0016F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MandelbrotExample2", "MandelbrotExample2\MandelbrotExample2.csproj", "{AB137AEC-FCE1-437C-9FD8-DEDA19BB664F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MandelbrotExample", "MandelbrotExample\MandelbrotExample.csproj", "{AB137AEC-FCE1-437C-9FD8-DEDA19BB664F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MandelbrotExample3", "MandelbrotExample3\MandelbrotExample3.csproj", "{52C540C1-8781-414D-9505-0EEFADFD0207}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MandelbrotExample3", "MandelbrotExample3\MandelbrotExample3.csproj", "{52C540C1-8781-414D-9505-0EEFADFD0207}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -35,6 +35,11 @@ namespace Core
       return zoomedConfiguration;
     }
 
+    public Configuration Zoom(double magnitude, int maxIterationCount)
+    {
+      return Zoom(_center, magnitude, maxIterationCount);
+    }
+
     public Configuration Zoom(double magnitude)
     {
       return Zoom(_center, magnitude, _maxIterationCount);

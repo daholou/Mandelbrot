@@ -11,8 +11,8 @@ namespace Core.Frame
       FrameData firstFrameData,
       FrameData lastFrameData,
       Complex center,
-      double initialHorizontalDiameter,
-      double ratio,
+      double initialHorizontalRadius,
+      double initialVerticalRadius,
       double zoomFactor
     )
     {
@@ -22,17 +22,17 @@ namespace Core.Frame
       );
 
       _configurations = new();
-      FrameConfiguration initialConfiguration = new(
-          center,
-          initialHorizontalDiameter,
-          ratio,
-          firstFrameData.MaxIterationCount
+      FrameConfiguration baseConfiguration = new(
+        center,
+        initialHorizontalRadius,
+        initialVerticalRadius,
+        firstFrameData.MaxIterationCount
       );
 
       for (int k = 0; k < _frames.Count; k++)
       {
         double magnitude = Math.Pow(zoomFactor, firstFrameData.FrameIndex + k - 1);
-        FrameConfiguration configuration = initialConfiguration.Zoom(
+        FrameConfiguration configuration = baseConfiguration.Zoom(
           magnitude,
           _frames[k].MaxIterationCount
         );

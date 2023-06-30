@@ -14,22 +14,6 @@
       _maxIterationCount = maxIterationCount;
     }
 
-    public int FrameIndex
-    {
-      get
-      {
-        return _frameIndex;
-      }
-    }
-
-    public int MaxIterationCount
-    {
-      get
-      {
-        return _maxIterationCount;
-      }
-    }
-
     public static List<FrameData> InterpolateBetween(
       FrameData firstFrame,
       FrameData lastFrame
@@ -44,15 +28,20 @@
       }
 
       int sign = firstFrame.FrameIndex < lastFrame.FrameIndex ? 1 : -1;
-      int numberOfFrames = Math.Abs(lastFrame.FrameIndex - firstFrame.FrameIndex);
-      int deltaIterations = lastFrame.MaxIterationCount - firstFrame.MaxIterationCount;
+      int numberOfFrames = Math.Abs(
+        lastFrame.FrameIndex - firstFrame.FrameIndex
+      );
+      int deltaIterations =
+        lastFrame.MaxIterationCount - firstFrame.MaxIterationCount;
       double delta = deltaIterations / (double)numberOfFrames;
       if (numberOfFrames > 0)
       {
         for (int frame = 0; frame < numberOfFrames; frame++)
         {
           int frameIndex = firstFrame.FrameIndex + sign * frame;
-          int maxIterationCount = (int)Math.Round(firstFrame.MaxIterationCount + delta * frame);
+          int maxIterationCount = (int)Math.Round(
+            firstFrame.MaxIterationCount + delta * frame
+          );
           frames.Add(new FrameData(frameIndex, maxIterationCount));
         }
       }
@@ -67,6 +56,22 @@
         formattedFrameIndex = "0" + formattedFrameIndex;
       }
       return formattedFrameIndex;
+    }
+
+    public int FrameIndex
+    {
+      get
+      {
+        return _frameIndex;
+      }
+    }
+
+    public int MaxIterationCount
+    {
+      get
+      {
+        return _maxIterationCount;
+      }
     }
   }
 }

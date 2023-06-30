@@ -32,9 +32,9 @@ namespace MandelbrotExample.Runner
       return "ascii-frames";
     }
 
-    public override string GetZoomFrameSequenceFileName(FrameData frameData)
+    public override string GetFrameZoomSequenceFileName(string formattedIndex)
     {
-      return $"ascii_frame_{frameData.GetFormattedIndex()}.png";
+      return $"ascii_frame_{formattedIndex}.png";
     }
 
     public override string GetSingleFrameFileName(int maxIterationCount)

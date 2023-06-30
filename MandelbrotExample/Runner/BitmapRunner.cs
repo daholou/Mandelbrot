@@ -42,9 +42,9 @@ namespace MandelbrotExample.Runner
       return "bitmap-frames";
     }
 
-    public override string GetZoomFrameSequenceFileName(FrameData frameData)
+    public override string GetFrameZoomSequenceFileName(string formattedIndex)
     {
-      return $"bitmap_frame_{frameData.GetFormattedIndex()}.png";
+      return $"bitmap_frame_{formattedIndex}.png";
     }
 
     public override string GetSingleFrameFileName(int maxIterationCount)

@@ -5,34 +5,38 @@ namespace Core.Frame
   public class FrameConfiguration
   {
     private readonly Complex _center;
-    private readonly double _horizontalDiameter;
     private readonly double _horizontalRadius;
     private readonly double _verticalRadius;
-    private readonly double _ratio;
     private readonly int _maxIterationCount;
+    private readonly double _magnitude;
 
     public FrameConfiguration(
       Complex center,
-      double horizontalDiameter,
-      double ratio,
-      int maxIterationCount
+      double horizontalRadius,
+      double verticalRadius,
+      int maxIterationCount,
+      double magnitude = 1
     )
     {
       _center = center;
-      _horizontalDiameter = horizontalDiameter;
-      _horizontalRadius = horizontalDiameter / 2;
-      _verticalRadius = _horizontalRadius * ratio;
-      _ratio = ratio;
+      _horizontalRadius = horizontalRadius;
+      _verticalRadius = verticalRadius;
       _maxIterationCount = maxIterationCount;
+      _magnitude = magnitude;
     }
 
-    public FrameConfiguration Zoom(Complex focalPoint, double magnitude, int maxIterationCount)
+    public FrameConfiguration Zoom(
+      Complex focalPoint,
+      double magnitude,
+      int maxIterationCount
+    )
     {
       FrameConfiguration zoomedConfiguration = new(
         focalPoint,
-        _horizontalDiameter / magnitude,
-        _ratio,
-        maxIterationCount
+        _horizontalRadius / magnitude,
+        _verticalRadius / magnitude,
+        maxIterationCount,
+        _magnitude * magnitude
       );
       return zoomedConfiguration;
     }
@@ -47,11 +51,27 @@ namespace Core.Frame
       return Zoom(_center, magnitude, _maxIterationCount);
     }
 
+    public double Magnitude
+    {
+      get
+      {
+        return _magnitude;
+      }
+    }
+
     public Complex Center
     {
       get
       {
         return _center;
+      }
+    }
+
+    public int MaxIterationCount
+    {
+      get
+      {
+        return _maxIterationCount;
       }
     }
 
@@ -71,12 +91,13 @@ namespace Core.Frame
       }
     }
 
-    public int MaxIterationCount
+    public override string ToString()
     {
-      get
-      {
-        return _maxIterationCount;
-      }
+      return $"  - Zoom magnitude: x {Magnitude:E5}\n"
+        + $"  - Center : {Center}\n"
+        + $"  - Maximum iteration count : {MaxIterationCount}\n"
+        + $"  - Horizontal radius : {HorizontalRadius}\n"
+        + $"  - Vertical radius : {VerticalRadius}";
     }
   }
 }

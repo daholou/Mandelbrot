@@ -58,14 +58,15 @@ namespace MandelbrotExample.Util
       };
       Graphics graphics = Graphics.FromImage(bitmap);
       graphics.Clear(Color.Black);
-      PointF textLocation = new(0.0f, 0.0f);
+      float xOrigin = 0.5f * wChar;
+      PointF textLocation = new(xOrigin, 0.0f);
       for (int i = 0; i < _height; ++i)
       {
         textLocation.Y = i * hChar;
-        textLocation.X = 0;
+        textLocation.X = xOrigin;
         for (int j = 0; j < _width; ++j)
         {
-          textLocation.X = j * wChar;
+          textLocation.X = xOrigin + j * wChar;
           string symbol = "" + _data[i].ElementAt(j);
           graphics.DrawString(symbol, asciiFont, Brushes.White, textLocation, drawFormat);
         }
